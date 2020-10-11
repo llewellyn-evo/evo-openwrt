@@ -8,14 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pimd
-PKG_VERSION:=2.3.2
+PKG_VERSION:=3.0-beta1
 PKG_RELEASE:=1
 PKG_LICENSE:=GPL-2.0-or-later
 PKG_LICENSE_FILES:=COPYING
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/troglobit/pimd/releases/download/$(PKG_VERSION)
-PKG_HASH:=a3c03e40540980b2c06e265a17988e60
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/troglobit/pimd.git
+PKG_SOURCE_VERSION:=61a482398bd21256cd53e2dc43889b517d36edb9
 
 PKG_FIXUP:=autoreconf
 
@@ -38,16 +38,11 @@ define Package/pimd/conffiles
 	/etc/pimd.conf
 endef
 
-#CONFIGURE_ARGS += \
-#	--without-libcap
-
 define Package/pimd/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_DIR) $(1)/etc/init.d/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pimd $(1)/usr/sbin/
+	$(INSTALL_DIR) $(1)/etc
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/pimd $(1)/usr/sbin/
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/pimd.conf $(1)/etc
-	$(INSTALL_BIN) ./files/pimd.init $(1)/etc/init.d/pimd
 endef
 
 $(eval $(call BuildPackage,pimd))
