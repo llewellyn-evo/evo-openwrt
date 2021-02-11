@@ -15,7 +15,7 @@ PKG_LICENSE_FILES:=COPYING
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/troglobit/pimd.git
-PKG_SOURCE_VERSION:=61a482398bd21256cd53e2dc43889b517d36edb9
+PKG_SOURCE_VERSION:=9f758ebbf2f8ce97a2ea7458132570882d780d80
 
 PKG_FIXUP:=autoreconf
 
@@ -34,15 +34,13 @@ define Package/pimd/description
 	Pimd is a command line tool to manipulate the multicast routes of the Linux kernel.
 endef
 
-define Package/pimd/conffiles
-	/etc/pimd.conf
-endef
-
 define Package/pimd/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_DIR) $(1)/etc
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/pimd $(1)/usr/sbin/
-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/pimd.conf $(1)/etc
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_CONF) ./files/pimd $(1)/etc/config/
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/pimd.init $(1)/etc/init.d/pimd
 endef
 
 $(eval $(call BuildPackage,pimd))

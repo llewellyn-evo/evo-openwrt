@@ -1,0 +1,36 @@
+config loglevels
+	option none '1'
+	option error '2'
+	option warning '3'
+	option notice '4'
+	option info '5'
+	option debug '6'
+
+config pimd 'pimd'
+	option spt_mode 'packets'
+	option igmp_query_interval '5'
+	option hello_interval '10'
+	option enable '1'
+	option bsr_priority '10'
+#	option bsr_ip '172.16.2.1'
+	option bsr_interval '10'
+	option rp_priority '0'
+#	option rp_ip '172.16.2.1'
+	option rp_time '10'
+	option igmp_querier_timeout '20'
+	option loglevel '3'
+	option debug_options 'all'
+
+
+#config interface 'lan'
+#	option ignore '0'
+#	option igmp_version 'igmpv2'
+
+#config interface 'eth1'
+#	option ignore '0'
+#   option igmp_version 'igmpv2'
+
+
+#config rp_candidate_group
+#	option grp_prefix '224.0.75.69/24'
+
