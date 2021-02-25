@@ -19,7 +19,6 @@ config pimd 'pimd'
 	option rp_time '10'
 	option igmp_querier_timeout '20'
 	option loglevel '3'
-	option debug_options 'all'
 
 
 #config interface 'lan'
